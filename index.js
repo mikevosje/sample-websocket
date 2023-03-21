@@ -22,7 +22,7 @@ wss.on('connection', function (ws) {
       // Ignoring errors.
       //
     });
-  }, 1000);
+  }, 100);
   console.log('started client interval');
 
   ws.on('close', function () {
