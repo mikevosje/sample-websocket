@@ -51,7 +51,7 @@
 
         // will not use tls if the connection is not made over https
         const protocol = window.location.protocol.includes('https') ? 'wss': 'ws'
-        const ws = new WebSocket(`${protocol}://0.0.0.0:8080`);
+        const ws = new WebSocket(`wss://seashell-app-nnpig.ondigitalocean.app/`);
 
 
         ws.onmessage = function(event) {

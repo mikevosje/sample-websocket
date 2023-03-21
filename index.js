@@ -15,12 +15,14 @@ const wss = new WebSocket.Server({ server });
 
 wss.on('connection', function (ws) {
   const id = setInterval(function () {
-    ws.send(JSON.stringify(process.memoryUsage()), function () {
+    var d = new Date();
+    var time = d.getTime();
+    ws.send(time, function () {
       //
       // Ignoring errors.
       //
     });
-  }, 100);
+  }, 1000);
   console.log('started client interval');
 
   ws.on('close', function () {
