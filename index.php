@@ -16,51 +16,32 @@
     </style>
   </head>
   <body>
-    <h1>Server stats</h1>
-    <table>
-      <thead>
-        <tr>
-          <th colspan="2">Memory usage</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>RSS</td>
-          <td id="rss"></td>
-        </tr>
-        <tr>
-          <td>Heap total</td>
-          <td id="heapTotal"></td>
-        </tr>
-        <tr>
-          <td>Heap used</td>
-          <td id="heapUsed"></td>
-        </tr>
-        <tr>
-          <td>External</td>
-          <td id="external"></td>
-        </tr>
-      </tbody>
-    </table>
+    <h1 id="rss"></h1>
     <script>
       (function() {
         const rss = document.getElementById('rss');
-        const heapTotal = document.getElementById('heapTotal');
-        const heapUsed = document.getElementById('heapUsed');
-        const external = document.getElementById('external');
 
         // will not use tls if the connection is not made over https
         const protocol = window.location.protocol.includes('https') ? 'wss': 'ws'
-        const ws = new WebSocket(`wss://seashell-app-nnpig.ondigitalocean.app/`);
+        const ws = new WebSocket(`wss://time.flimdeal.nl`);
 
+
+        var countDownDate = new Date("2023-03-21 23:25:00").getTime();
 
         ws.onmessage = function(event) {
-          const data = JSON.parse(event.data);
+          var now = event.data;
 
-          rss.textContent = data.rss;
-          heapTotal.textContent = data.heapTotal;
-          heapUsed.textContent = data.heapUsed;
-          external.textContent = data.external;
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations fo r days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          rss.textContent = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";;
+          
         };
       })();
     </script>

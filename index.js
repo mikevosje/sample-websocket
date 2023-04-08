@@ -1,6 +1,7 @@
 
 'use strict';
 
+const Pusher = require("pusher")
 const express = require('express');
 const path = require('path');
 const { createServer } = require('http');
@@ -24,6 +25,11 @@ wss.on('connection', function (ws) {
     });
   }, 100);
   console.log('started client interval');
+
+  ws.onmessage = function (event) {
+    console.log('message');
+    console.log(event);
+};
 
   ws.on('close', function () {
     console.log('stopping client interval');
