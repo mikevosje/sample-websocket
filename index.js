@@ -40,5 +40,5 @@ server.listen(8080, function () {
     var d = new Date();
     var time = d.getTime();
     pusher.trigger('time', 'App\\Events\\UpdateTime', {time: time});
-  }, 500);
+  }, 1000);
 });
