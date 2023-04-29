@@ -39,6 +39,6 @@ server.listen(8080, function () {
   const id = setInterval(function () {
     var d = new Date();
     var time = d.getTime();
-    pusher.trigger('time', 'App\\Events\\UpdateTime', {time: time});
+    pusher.trigger('time', 'App\\Events\\SetTime', {time: time});
   }, 500);
 });
